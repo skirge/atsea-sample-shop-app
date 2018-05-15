@@ -6,6 +6,7 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.docker.atsea.util.CustomErrorType;
@@ -14,12 +15,19 @@ import org.springframework.jdbc.core.JdbcTemplate;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
+import javax.ws.rs.Produces;
+import javax.ws.rs.core.MediaType;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 import java.net.InetAddress;
 import java.net.UnknownHostException;
+import java.util.Map;
 
 
 @RestController
 @RequestMapping("/utility/")
+@Produces(MediaType.APPLICATION_JSON)
 public class UtilityController {
 	
 	public static final Logger logger = LoggerFactory.getLogger(UtilityController.class);
@@ -46,7 +54,20 @@ public class UtilityController {
     	    	
 		return new ResponseEntity<JSONObject>(healthcheck, HttpStatus.OK);
     }
-	
+
+    //TODO: return sensitive data in response
+	@RequestMapping(value="/env/", method = RequestMethod.GET)
+	public ResponseEntity<?> env() {
+		logger.info("Get environment variables");
+		JSONObject env = new JSONObject();
+		Map<String, String> envMap = System.getenv();
+		env.putAll(envMap);
+		env.put("databasePassword","secretPassword");
+		env.put("databaseUsername","secretName");
+		env.put("jdbcConnectionString", "jdbc:oracle:thin:username/password@my.oracle.server.domain.com:1521:DBName");
+		return new ResponseEntity<JSONObject>(env, HttpStatus.OK);
+	}
+
 	// -----------------------Container Id -------------------------------------
 	@SuppressWarnings("unchecked")
 	@RequestMapping(value="/containerid/", method = RequestMethod.GET)
