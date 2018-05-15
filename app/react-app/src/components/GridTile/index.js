@@ -3,6 +3,8 @@ import FlatButton from 'material-ui/FlatButton'
 import AddIcon from './AddIcon'
 import './styles.css'
 
+const API = '/api'
+
 export default class GridTile extends Component {
   addToCart = () => {
     const { onAddToCartClicked, productId } = this.props
@@ -14,7 +16,8 @@ export default class GridTile extends Component {
     const image2 = (
       <img
         alt="Logo"
-        src={process.env.PUBLIC_URL + image}
+        // TODO: added SSRF
+        src={API+"/image?url="+process.env.PUBLIC_URL + image}
       />
     )
     return (

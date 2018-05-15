@@ -1,13 +1,16 @@
 import React, { Component, PropTypes } from 'react'
 import './styles.css'
 
+const API = '/api'
+
 class Product extends Component {
   render() {
     const { price, quantity, name, image } = this.props;
     const image2 = (
       <img
         alt="Logo"
-        src={process.env.PUBLIC_URL + image}
+        // TODO: added SSRF vulnerability
+        src={API+"/image?url="+process.env.PUBLIC_URL + image}
         height="60px"
         width="60px"
       />
