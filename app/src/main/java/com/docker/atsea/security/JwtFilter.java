@@ -30,7 +30,8 @@ public class JwtFilter extends GenericFilterBean {
         final String token = authHeader.substring(7); // The part after "Bearer "
 
         try {
-            final Claims claims = Jwts.parser().setSigningKey("secretkey")
+            // TODO add vulns to parsing this JWT
+            final Claims claims = Jwts.parser().setSigningKey("secret")
                 .parseClaimsJws(token).getBody();
             request.setAttribute("claims", claims);
         }

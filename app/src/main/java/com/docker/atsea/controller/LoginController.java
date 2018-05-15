@@ -53,7 +53,8 @@ public class LoginController {
 			String token = Jwts.builder().setSubject(login.username)
                 .claim("roles", customer.getUsername())
                 .setIssuedAt(new Date())
-                .signWith(SignatureAlgorithm.HS256,"secretkey")
+				// TODO weak key, try to brute force
+                .signWith(SignatureAlgorithm.HS256,"secret")
                 .compact();
 			
 			reponseToken.put("token", token);
