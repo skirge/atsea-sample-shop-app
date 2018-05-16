@@ -8,14 +8,13 @@ import org.springframework.stereotype.Repository;
 import com.docker.atsea.model.Customer;
 
 @Repository
-public interface CustomerRepository extends JpaRepository<Customer, Long> {
-	
+public interface CustomerRepository extends JpaRepository<Customer, Long>, CustomerRepositoryCustom {
+
+    //TODO make it vulnerable to SQLi
 	Customer findOne(Long customerId);
-	
+
+	//TODO make it vulnerable to SQLi
 	Customer findByName(String name);
-	
-	// adding find by username
-	@Query("SELECT c FROM Customer c WHERE c.username = :userName")
-	Customer findByUserName(@Param("userName") String userName);
+
 }
 

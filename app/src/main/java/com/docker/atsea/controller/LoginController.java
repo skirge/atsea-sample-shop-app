@@ -49,8 +49,8 @@ public class LoginController {
 					+ " not found"), HttpStatus.NOT_FOUND);
 		}
 		
-		if (Objects.deepEquals(login.password, customer.getPassword()) && Objects.equals(login.username, customer.getUsername())) {
-			String token = Jwts.builder().setSubject(login.username)
+		if (Objects.deepEquals(login.password, customer.getPassword())) {
+			String token = Jwts.builder().setSubject(customer.getUsername())
                 .claim("roles", customer.getUsername())
                 .setIssuedAt(new Date())
 				// TODO weak key, try to brute force
