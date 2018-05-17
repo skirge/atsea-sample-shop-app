@@ -1,6 +1,7 @@
 package com.docker.atsea.model;
 
 import com.fasterxml.jackson.annotation.JsonTypeInfo;
+import org.hibernate.annotations.Type;
 import org.hibernate.validator.constraints.NotEmpty;
 
 import com.fasterxml.jackson.annotation.JsonInclude;
@@ -25,8 +26,7 @@ public class Product implements Serializable {
     @NotEmpty
     @Column(name = "name", length = 255, nullable = false)
     private String name;
-    
-    @NotEmpty
+
     @Column(name = "price", nullable = false)
     private double price;
     
@@ -39,12 +39,12 @@ public class Product implements Serializable {
 
     @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include = JsonTypeInfo.As.PROPERTY, visible = true)
     @Column(name="object1", nullable = true)
-    @Lob
+    @Type(type="serializable")
     Object obj1;
 
     public Object getObj1() {
-        return new CrazyClass();
-        //return obj1;
+        //return new CrazyClass();
+        return obj1;
     }
 
     public void setObj1(Object obj) {
@@ -53,12 +53,12 @@ public class Product implements Serializable {
 
     @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include= JsonTypeInfo.As.WRAPPER_ARRAY, visible = true)
     @Column(name="object2", nullable = true)
-    @Lob
+    @Type(type="serializable")
     Object obj2;
 
     public Object getObj2() {
-        return new CrazyClass();
-        //return obj2;
+        //return new CrazyClass();
+        return obj2;
     }
 
     public void setObj2(Object obj) {
@@ -67,12 +67,12 @@ public class Product implements Serializable {
 
     @JsonTypeInfo(use = JsonTypeInfo.Id.CLASS, include= JsonTypeInfo.As.WRAPPER_OBJECT, visible = true)
     @Column(name="object3", nullable = true)
-    @Lob
+    @Type(type="serializable")
     Object obj3;
 
     public Object getObj3() {
-        return new CrazyClass();
-        //return obj3;
+        //return new CrazyClass();
+        return obj3;
     }
 
     public void setObj3(Object obj) {
@@ -81,12 +81,12 @@ public class Product implements Serializable {
 
     @JsonTypeInfo(use = JsonTypeInfo.Id.NAME, include= JsonTypeInfo.As.PROPERTY, visible = true)
     @Column(name="object4", nullable = true)
-    @Lob
+    @Type(type="serializable")
     Object obj4;
 
     public Object getObj4() {
-        return new CrazyClass();
-        //return obj4;
+        //return new CrazyClass();
+        return obj4;
     }
 
     public void setObj4(Object obj) {

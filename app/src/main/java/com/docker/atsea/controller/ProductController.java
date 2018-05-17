@@ -52,9 +52,9 @@ public class ProductController {
 	public ResponseEntity<Product> createProduct(@RequestBody Product newProduct)
 	{
 		logger.info("Creating new product = [" + newProduct + "]");
-		// TODO: actual order creation not done
+		Product createdProduct = productService.createProduct(newProduct);
 
-		return new ResponseEntity<Product>(newProduct, HttpStatus.OK);
+		return new ResponseEntity<Product>(createdProduct, HttpStatus.OK);
 	}
 
 	@RequestMapping(value = "/product/", method = RequestMethod.PATCH, headers = {"content-type=application/xml"})
