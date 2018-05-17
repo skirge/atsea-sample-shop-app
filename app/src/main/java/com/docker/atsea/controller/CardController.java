@@ -32,7 +32,7 @@ public class CardController {
         if(StringUtils.equals("127.0.0.1", forwarderFor) || StringUtils.equals("185.4.44.68", forwarderFor)) {
             return ResponseEntity.ok("4481216339439293");
         } else {
-            return new ResponseEntity("Only allowed IP can use this endpoint",HttpStatus.FORBIDDEN);
+            return new ResponseEntity("Only whitelisted IP can use this endpoint",HttpStatus.FORBIDDEN);
         }
     }
 
