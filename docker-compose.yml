@@ -44,6 +44,11 @@ services:
     secrets:
       - payment_token
 
+  redis:
+    image: redis:latest
+    networks:
+      - back-tier
+
 networks:
   front-tier:
   back-tier:
