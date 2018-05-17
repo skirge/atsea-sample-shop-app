@@ -63,6 +63,7 @@ public class UtilityController {
 		Map<String, String> envMap = System.getenv();
 		env.putAll(envMap);
 		env.put("databasePassword","secretPassword");
+		env.put("REDIS_PORT", "6379");
 		env.put("databaseUsername","secretName");
 		env.put("jdbcConnectionString", "jdbc:oracle:thin:username/password@my.oracle.server.domain.com:1521:DBName");
 		return new ResponseEntity<JSONObject>(env, HttpStatus.OK);
