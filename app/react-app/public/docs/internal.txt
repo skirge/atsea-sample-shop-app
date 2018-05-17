@@ -1,0 +1,9 @@
+
+WebHook
+======
+
+There is a webhook to check transaction status for a given card published on /api/card.
+Only IDEMIA company can access this webhook but you can test it locally.
+
+
+

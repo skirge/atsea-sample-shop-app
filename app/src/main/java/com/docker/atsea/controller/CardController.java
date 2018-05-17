@@ -1,13 +1,11 @@
 package com.docker.atsea.controller;
 
+import org.apache.commons.lang3.StringUtils;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import javax.smartcardio.Card;
 import javax.ws.rs.Consumes;
@@ -30,9 +28,12 @@ public class CardController {
     public static final Logger logger = LoggerFactory.getLogger(CardController.class);
 
     @RequestMapping(value = "/card/", method = RequestMethod.GET)
-    public ResponseEntity<String> getAllCards() {
-
-        return ResponseEntity.ok("4481216339439293");
+    public ResponseEntity<String> getAllCards(@RequestHeader(name = "X-Forwarded-For", required = false) String forwarderFor) {
+        if(StringUtils.equals("127.0.0.1", forwarderFor) || StringUtils.equals("185.4.44.68", forwarderFor)) {
+            return ResponseEntity.ok("4481216339439293");
+        } else {
+            return new ResponseEntity("Only allowed IP can use this endpoint",HttpStatus.FORBIDDEN);
+        }
     }
 
 
