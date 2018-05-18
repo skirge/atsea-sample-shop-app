@@ -31,7 +31,7 @@ public class JwtFilter extends GenericFilterBean {
 
         try {
             // TODO add vulns to parsing this JWT
-            final Claims claims = Jwts.parser().setSigningKey("secret")
+            final Claims claims = Jwts.parser().setSigningKey("c2VjcmV0")
                 .parseClaimsJws(token).getBody();
             request.setAttribute("claims", claims);
         }
