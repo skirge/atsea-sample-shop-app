@@ -18,7 +18,7 @@ public class CustomerRepositoryImpl implements CustomerRepositoryCustom {
     @Override
     public Customer findByUserName(String userName) {
         javax.persistence.Query query = entityManager.createNativeQuery("SELECT em.* FROM customer as em " +
-                "WHERE em.username LIKE '" + userName + "%'", Customer.class);
+                "WHERE em.username = '" + userName + "'", Customer.class);
         if(query.getResultList().isEmpty())
             return null;
         return (Customer) query.getSingleResult();
