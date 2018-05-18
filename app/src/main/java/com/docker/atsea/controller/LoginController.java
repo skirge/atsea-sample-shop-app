@@ -54,7 +54,7 @@ public class LoginController {
                 .claim("roles", customer.getUsername())
                 .setIssuedAt(new Date())
 				// TODO weak key, try to brute force
-                .signWith(SignatureAlgorithm.HS256,"secret")
+                .signWith(SignatureAlgorithm.HS256,"c2VjcmV0")
                 .compact();
 			
 			reponseToken.put("token", token);
