@@ -25,6 +25,7 @@ public class AtSeaApp {
         final FilterRegistrationBean registrationBean = new FilterRegistrationBean();
         registrationBean.setFilter(new JwtFilter());
         registrationBean.addUrlPatterns("/purchase/*");
+        registrationBean.addUrlPatterns("/api/order/*");
 
         return registrationBean;
     }
