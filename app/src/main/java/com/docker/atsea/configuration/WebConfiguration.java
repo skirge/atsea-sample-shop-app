@@ -1,12 +1,9 @@
 package com.docker.atsea.configuration;
 
+import org.springframework.http.MediaType;
 import org.springframework.stereotype.Component;
 import org.springframework.util.AntPathMatcher;
-import org.springframework.web.servlet.config.annotation.ResourceHandlerRegistry;
-import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
-import org.springframework.web.servlet.config.annotation.WebMvcConfigurerAdapter;
-import org.springframework.web.servlet.config.annotation.EnableWebMvc;
-import org.springframework.web.servlet.config.annotation.PathMatchConfigurer;
+import org.springframework.web.servlet.config.annotation.*;
 
 @Component
 @EnableWebMvc
@@ -33,4 +30,12 @@ public class WebConfiguration extends WebMvcConfigurerAdapter {
         	matcher.setCaseSensitive(false);
        		configurer.setPathMatcher(matcher);
     	}
+
+	@Override
+	public void configureContentNegotiation(ContentNegotiationConfigurer configurer) {
+		configurer.favorPathExtension(true).
+				favorParameter(true).
+				defaultContentType(MediaType.APPLICATION_JSON).
+				mediaType("xml", MediaType.APPLICATION_XML);
+	}
 }
