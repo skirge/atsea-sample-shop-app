@@ -1,3 +1,6 @@
+This version was modified as a sample application for demonstration of security
+vulnerabilities and is extremely insecure!
+
 ![](atsea_store.png)
 #  AtSea Shop Demonstration Application
 
