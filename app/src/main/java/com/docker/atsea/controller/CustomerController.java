@@ -162,6 +162,8 @@ public class CustomerController {
 
 	// ------------------- Delete a Customer-----------------------------------------
 
+	/*
+	TODO: this is not a good idea, especially with fuzzer ;)
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "/customer/{customerId}", method = RequestMethod.DELETE)
 	public ResponseEntity<?> deleteCustomer(@PathVariable("customerId") long customerId) {
@@ -186,5 +188,6 @@ public class CustomerController {
 		customerService.deleteAllCustomers();
 		return new ResponseEntity<Customer>(HttpStatus.NO_CONTENT);
 	}
-	
+	*/
+
 }
