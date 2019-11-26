@@ -29,10 +29,12 @@ public class CardController {
 
     @RequestMapping(value = "/card/", method = RequestMethod.GET)
     public ResponseEntity<String> getAllCards(@RequestHeader(name = "X-Forwarded-For", required = false) String forwarderFor) {
-        if(StringUtils.equals("127.0.0.1", forwarderFor) || StringUtils.equals("185.4.44.68", forwarderFor)) {
+        if (StringUtils.isEmpty(forwarderFor)) {
+            return new ResponseEntity("Only whitelisted IP can use this endpoint",HttpStatus.FORBIDDEN);
+        } else  if(StringUtils.equals("127.0.0.1", forwarderFor) || StringUtils.equals("185.4.44.68", forwarderFor)) {
             return ResponseEntity.ok("4481216339439293");
         } else {
-            return new ResponseEntity("Only whitelisted IP can use this endpoint",HttpStatus.FORBIDDEN);
+            return new ResponseEntity("Invalid IP!", HttpStatus.FORBIDDEN);
         }
     }
 
