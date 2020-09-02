@@ -3,7 +3,14 @@ version: "3.1"
 services:
   reverse_proxy:
     build: ./reverse_proxy
-    user: nginx
+    ports:
+      - "80:80"
+      - "443:443"
+    networks:
+      - front-tier
+    secrets:
+      - revprox_cert
+      - revprox_key
 
   database:
     build: 
@@ -60,3 +67,7 @@ secrets:
     file: ./devsecrets/postgres_password
   payment_token:
     file: ./devsecrets/payment_token
+  revprox_cert:
+    file: ./certs/domain.crt
+  revprox_key:
+    file: ./certs/domain.key

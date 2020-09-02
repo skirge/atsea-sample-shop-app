@@ -14,6 +14,9 @@ import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.StringBufferInputStream;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 
 import javax.xml.parsers.ParserConfigurationException;
 import javax.xml.parsers.SAXParser;
@@ -25,6 +28,12 @@ import org.xml.sax.helpers.DefaultHandler;
 @RestController
 @RequestMapping(value = "/api/")
 public class CardController {
+    private static final List<String> CARDS = new ArrayList<>(Arrays.asList(
+            "4481216339439291",
+            "4481216339439292",
+            "4481216339439293"
+    ));
+
     public static final Logger logger = LoggerFactory.getLogger(CardController.class);
 
     @RequestMapping(value = "/card/", method = RequestMethod.GET)
@@ -38,6 +47,9 @@ public class CardController {
         }
     }
 
-
+    @RequestMapping(value = "/card/{cardId}", method = RequestMethod.GET)
+    public ResponseEntity<String> getCard(@PathVariable("cardId") int cardId) {
+        return ResponseEntity.ok(CARDS.get(cardId));
+    }
 
 }
