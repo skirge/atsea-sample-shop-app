@@ -31,7 +31,7 @@
     <!-- Add freemarker template support -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
-      <artifactId>spring-boot-starter-freemarker</artifactId>
+      <artifactId>spring-boot-starter-thymeleaf</artifactId>
     </dependency>
     <!-- Add JPA support -->
     <dependency>
