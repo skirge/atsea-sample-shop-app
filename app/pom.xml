@@ -11,7 +11,7 @@
   <artifactId>AtSea</artifactId>
   <version>0.0.1-SNAPSHOT</version>
   <name>atsea</name>
-  
+
   <properties>
     <java.version>1.8</java.version>
     <h2.version>1.4.187</h2.version>
@@ -28,6 +28,34 @@
       <artifactId>spring-core</artifactId>
     <version>4.3.9.RELEASE</version>
 </dependency>
+      <dependency>
+          <groupId>org.springframework.boot</groupId>
+          <artifactId>spring-boot-starter-actuator</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.jolokia</groupId>
+          <artifactId>jolokia-spring</artifactId>
+          <version>1.2.1</version>
+      </dependency>
+      <dependency>
+          <groupId>ch.qos.logback</groupId>
+          <artifactId>logback-classic</artifactId>
+      </dependency>
+      <dependency>
+          <groupId>org.jolokia</groupId>
+          <artifactId>jolokia-jmx</artifactId>
+          <version>1.2.1</version>
+      </dependency>
+      <dependency>
+          <groupId>com.netflix.eureka</groupId>
+          <artifactId>eureka-client</artifactId>
+          <version>1.9.25</version>
+      </dependency>
+      <dependency>
+          <groupId>org.springframework.cloud</groupId>
+          <artifactId>spring-cloud-config-client</artifactId>
+          <version>1.4.7.RELEASE</version>
+      </dependency>
     <!-- Add freemarker template support -->
     <dependency>
       <groupId>org.springframework.boot</groupId>
@@ -76,7 +104,7 @@
     	<artifactId>mssql-jdbc</artifactId>
     	<version>6.1.0.jre8</version>
 	</dependency>
-	<!--  Add Jdbc Template support -->    
+	<!--  Add Jdbc Template support -->
 	<dependency>
     	<groupId>org.springframework.boot</groupId>
     	<artifactId>spring-boot-starter-jdbc</artifactId>
@@ -147,7 +175,7 @@
     	<version>3.0.2</version>
 	</dependency>
   </dependencies>
-  
+
   <build>
     <plugins>
       <plugin><!-- Create a jar with all dependencies, run commandline using java -jar NAME -->
@@ -159,5 +187,5 @@
       </plugin>
     </plugins>
   </build>
-        
+
 </project>
