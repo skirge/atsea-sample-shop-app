@@ -11,7 +11,7 @@ import javax.sql.DataSource;
 
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.boot.autoconfigure.jdbc.DataSourceBuilder;
+import org.springframework.boot.jdbc.DataSourceBuilder;
 import org.springframework.boot.autoconfigure.jdbc.DataSourceProperties;
 import org.springframework.boot.context.properties.ConfigurationProperties;
 import org.springframework.context.annotation.Bean;
@@ -69,6 +69,7 @@ public class JpaConfiguration {
 	/*
 	 * Configure HikariCP pooled DataSource.
 	 */
+	/*
 	@Bean
 	public DataSource dataSource() {
 		DataSourceProperties dataSourceProperties = dataSourceProperties();
@@ -82,10 +83,11 @@ public class JpaConfiguration {
 					.build();
 			return dataSource;
 	}
-
+	*/
 	/*
 	 * Entity Manager Factory setup.
 	 */
+	/*
 	@Bean
 	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
@@ -95,7 +97,7 @@ public class JpaConfiguration {
 		factoryBean.setJpaProperties(jpaProperties());
 		return factoryBean;
 	}
-
+	*/
 	/*
 	 * Provider specific adapter.
 	 */

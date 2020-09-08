@@ -1,4 +1,16 @@
 ---
+spring:
+  freemarker:
+    template-loader-path: classpath:/templates/
+    prefer-file-system-access: false
+---
+endpoints:
+  refresh.enabled: true
+  restart.enabled: true
+  pause.enabled: true
+  resume.enabled: true
+  env.post.enabled: true
+---
 management:
   security:
     enabled: false

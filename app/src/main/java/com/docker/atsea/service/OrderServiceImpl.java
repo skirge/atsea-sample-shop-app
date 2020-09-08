@@ -1,6 +1,7 @@
 package com.docker.atsea.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,8 @@ public class OrderServiceImpl implements OrderService {
 	private OrderRepository orderRepository;
 		
 	public Order findById(Long orderId) {
-		return orderRepository.findOne(orderId) ;
+		Optional<Order> order = orderRepository.findById(orderId) ;
+		return order.orElse(null);
 	}
 
 	public Order createOrder(Order order) {		
@@ -36,7 +38,7 @@ public class OrderServiceImpl implements OrderService {
 	}
 
 	public void deleteOrderById(Long orderId) {
-		orderRepository.delete(orderId);
+		orderRepository.deleteById(orderId);
 	}
 
 	public void deleteAllItems() {

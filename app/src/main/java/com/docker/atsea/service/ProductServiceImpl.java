@@ -1,6 +1,7 @@
 package com.docker.atsea.service;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -25,7 +26,8 @@ public class ProductServiceImpl implements ProductService {
 	}
 
 	public Product findById(Long productId) {
-		return productRepository.findOne(productId);
+		Optional<Product> product = productRepository.findById(productId);
+		return product.orElse(null);
 	}
 
 	@Override

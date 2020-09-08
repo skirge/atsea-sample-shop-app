@@ -2,6 +2,7 @@ package com.docker.atsea.service;
 
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -18,7 +19,8 @@ public class CustomerServiceImpl implements CustomerService {
 	private CustomerRepository customerRepository;
 
 	public Customer findById(Long customerId) {
-		return customerRepository.findOne(customerId);
+		Optional<Customer> customer = customerRepository.findById(customerId);
+		return customer.orElse(null);
 	}
 
 	public Customer findByUserName(String name) {
@@ -57,6 +59,6 @@ public class CustomerServiceImpl implements CustomerService {
 	}
 
 	public void deleteCustomerById(Long customerId) {
-		customerRepository.delete(customerId);		
+		customerRepository.deleteById(customerId);
 	}
 }

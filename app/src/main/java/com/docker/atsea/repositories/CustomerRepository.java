@@ -11,7 +11,7 @@ import com.docker.atsea.model.Customer;
 public interface CustomerRepository extends JpaRepository<Customer, Long>, CustomerRepositoryCustom {
 
     //TODO make it vulnerable to SQLi
-	Customer findOne(Long customerId);
+	//Customer findOne(Long customerId);
 
 	//TODO make it vulnerable to SQLi
 	Customer findByName(String name);
