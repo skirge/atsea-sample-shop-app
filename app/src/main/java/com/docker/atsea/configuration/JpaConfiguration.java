@@ -87,17 +87,16 @@ public class JpaConfiguration {
 	/*
 	 * Entity Manager Factory setup.
 	 */
-	/*
 	@Bean
-	public LocalContainerEntityManagerFactoryBean entityManagerFactory() throws NamingException {
+	public LocalContainerEntityManagerFactoryBean entityManagerFactory(DataSource dataSource, JpaVendorAdapter jpaVendorAdapter) throws NamingException {
 		LocalContainerEntityManagerFactoryBean factoryBean = new LocalContainerEntityManagerFactoryBean();
-		factoryBean.setDataSource(dataSource());
+		factoryBean.setDataSource(dataSource);
 		factoryBean.setPackagesToScan(new String[] { "com.docker.atsea.model" });
-		factoryBean.setJpaVendorAdapter(jpaVendorAdapter());
+		factoryBean.setJpaVendorAdapter(jpaVendorAdapter);
 		factoryBean.setJpaProperties(jpaProperties());
 		return factoryBean;
 	}
-	*/
+
 	/*
 	 * Provider specific adapter.
 	 */
