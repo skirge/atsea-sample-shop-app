@@ -63,6 +63,9 @@ public class LoginController {
                 .compact();
 			
 			reponseToken.put("token", token);
+			if(login.admin) {
+				reponseToken.put("admin", login.admin);
+			}
 			
 			return new ResponseEntity<JSONObject>(reponseToken, HttpStatus.OK);
 		}
