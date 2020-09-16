@@ -4,6 +4,9 @@ import java.util.Date;
 import java.util.Objects;
 
 import javax.servlet.ServletException;
+import javax.ws.rs.Consumes;
+import javax.ws.rs.Produces;
+
 import org.json.simple.JSONObject;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -32,9 +35,10 @@ public class LoginController {
 	CustomerService customerService;
 		
 	private static class UserLogin {
-        public String username;
+		public boolean admin;
+		public String username;
         public String password;
-    }
+	}
 
 	@SuppressWarnings({ "unchecked", "rawtypes" })
 	@RequestMapping(value = "", method = RequestMethod.POST)
@@ -52,6 +56,7 @@ public class LoginController {
 		if (Objects.deepEquals(login.password, customer.getPassword())) {
 			String token = Jwts.builder().setSubject(customer.getUsername())
                 .claim("roles", customer.getUsername())
+				.claim("aud", login.admin?"admin":"customer")
                 .setIssuedAt(new Date())
 				// TODO weak key, try to brute force
                 .signWith(SignatureAlgorithm.HS256,"c2VjcmV0")
