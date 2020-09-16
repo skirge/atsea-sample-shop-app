@@ -113,11 +113,11 @@
             </exclusion>
         </exclusions>
     </dependency>
-      <!--dependency>
+      <dependency>
           <groupId>com.fasterxml.jackson.dataformat</groupId>
-          <artifactId>jackson-dataformat-xml</artifactId>
-          <version>2.7.3</version>
-      </dependency-->
+          <artifactId>jackson-dataformat-yaml</artifactId>
+          <version>2.9.0</version>
+      </dependency>
       <dependency>
           <groupId>com.fasterxml.jackson.core</groupId>
           <artifactId>jackson-core</artifactId>
