@@ -54,21 +54,28 @@ docker swarm init
 docker stack deploy -c docker-stack.yml atsea
 ```
 
-## A simplified development environment
-This compose file creates a simplified development environment consisting of only the application server and the database.
+# Domain name
 
+Add following:
 ```
-docker-compose --file docker-compose-dev.yml up --build
+127.0.0.1 atseashop.com
 ```
-
+to `hosts` file (`/etc/hosts` on Linux, `C:\Windows\System32\drivers\etc\hosts` on Windows).
 
 
 ## The AtSea Shop 
 
-The URL for the content is `http://localhost:8080/`
+The URL for the content is `http://localhost:8080/`,
+HTTPS is server on `https://atseashop.com`, using self signed certificate.
 
 # REST API
 
 Documentation for REST calls: [REST API](./REST.md)
 
 
+## A simplified development environment
+This compose file creates a simplified development environment consisting of only the application server and the database.
+
+```
+docker-compose --file docker-compose-dev.yml up --build
+```
