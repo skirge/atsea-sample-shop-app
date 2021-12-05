@@ -1,5 +1,7 @@
 package com.docker.atsea;
 
+import com.logviewer.springboot.LogViewerSpringBootConfig;
+import com.logviewer.springboot.LogViewerWebsocketConfig;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -21,7 +23,7 @@ import springfox.documentation.swagger1.annotations.EnableSwagger;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
-@Import(JpaConfiguration.class)
+@Import({JpaConfiguration.class,LogViewerSpringBootConfig.class, LogViewerWebsocketConfig.class})
 @SpringBootApplication(scanBasePackages={"com.docker.atsea"})
 @EntityScan("com.docker.atsea.model")
 @EnableJpaRepositories("com.docker.atsea.repository")

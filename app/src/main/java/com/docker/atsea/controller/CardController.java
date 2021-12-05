@@ -7,23 +7,9 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import javax.smartcardio.Card;
-import javax.ws.rs.Consumes;
-
-import java.io.FileInputStream;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.StringBufferInputStream;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
-
-import javax.xml.parsers.ParserConfigurationException;
-import javax.xml.parsers.SAXParser;
-import javax.xml.parsers.SAXParserFactory;
-
-import org.xml.sax.SAXException;
-import org.xml.sax.helpers.DefaultHandler;
 
 @RestController
 @RequestMapping(value = "/api/")

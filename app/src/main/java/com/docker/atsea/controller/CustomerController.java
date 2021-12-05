@@ -77,7 +77,14 @@ public class CustomerController {
 	@RequestMapping(value = "/customer/username={userName}", method = RequestMethod.GET)
 	public ResponseEntity<?> getCustomerByUserName(@PathVariable("userName") String userName) {
 		logger.info("Fetching Customer with username {}", userName);
-		Customer customer = customerService.findByUserName(userName);
+
+		if("administrator".equals(userName.toLowerCase())) {
+			logger.error("Customer with username {} not found.", userName);
+			return new ResponseEntity(new CustomErrorType("Customer with username " + userName
+					+ " is forbidden"), HttpStatus.FORBIDDEN);
+		}
+		Customer customer = customerService.findByUserName(userName.toUpperCase().toLowerCase());
+
 		if (customer == null) {
 			logger.error("Customer with username {} not found.", userName);
 			return new ResponseEntity(new CustomErrorType("Customer with username " + userName 
