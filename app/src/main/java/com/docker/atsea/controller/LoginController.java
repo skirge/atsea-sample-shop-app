@@ -46,6 +46,9 @@ public class LoginController {
 		throws ServletException {
 		
 		JSONObject reponseToken = new JSONObject();
+
+		logger.info("Trying to find username:{}", login.username);
+
 		Customer customer = customerService.findByUserName(login.username);
 		if (customer == null) {
 			logger.error("Customer with username {} not found.", login.username);
