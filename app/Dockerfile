@@ -1,4 +1,4 @@
-FROM node:latest AS storefront
+FROM node@sha256:22f1866405ad50bb1d141739596ba803aed073d618ab2ae6d5e66aedcf9261b5 AS storefront
 WORKDIR /usr/src/atsea/app/react-app
 COPY react-app .
 RUN npm install
