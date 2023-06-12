@@ -1,4 +1,4 @@
-package com.docker.atsea.ws;
+package com.docker.atsea.ws.students;
 
 import javax.xml.bind.annotation.adapters.XmlAdapter;
 import java.util.LinkedHashMap;

@@ -1,11 +1,11 @@
-package com.docker.atsea.ws;
+package com.docker.atsea.ws.students;
 
 
 import javax.jws.WebService;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
-@WebService(endpointInterface = "com.docker.atsea.ws.Students")
+@WebService(endpointInterface = "com.docker.atsea.ws.students.Students")
 public class StudentsImpl implements Students {
     private Map<Integer, Student> students
             = new LinkedHashMap<Integer, Student>();

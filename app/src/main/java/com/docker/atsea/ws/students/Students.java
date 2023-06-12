@@ -1,4 +1,4 @@
-package com.docker.atsea.ws;
+package com.docker.atsea.ws.students;
 
 import javax.jws.WebService;
 import javax.xml.bind.annotation.adapters.XmlJavaTypeAdapter;

@@ -1,4 +1,4 @@
-package com.docker.atsea.ws;
+package com.docker.atsea.ws.students;
 
 import javax.xml.bind.annotation.XmlElement;
 import javax.xml.bind.annotation.XmlType;

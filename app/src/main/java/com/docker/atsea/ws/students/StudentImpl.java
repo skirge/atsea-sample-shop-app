@@ -1,4 +1,4 @@
-package com.docker.atsea.ws;
+package com.docker.atsea.ws.students;
 
 import javax.xml.bind.annotation.XmlType;
 
@@ -9,6 +9,8 @@ public class StudentImpl implements Student {
     public StudentImpl(String name) {
         this.name = name;
     }
+
+    public StudentImpl() {};
 
     @Override
     public String getName() {
