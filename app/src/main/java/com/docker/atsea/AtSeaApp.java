@@ -1,5 +1,7 @@
 package com.docker.atsea;
 
+import com.docker.atsea.ws.orders.OrderServiceConfig;
+import com.docker.atsea.ws.students.StudentsWebServiceConfig;
 import com.logviewer.springboot.LogViewerSpringBootConfig;
 import com.logviewer.springboot.LogViewerWebsocketConfig;
 import io.micrometer.core.instrument.binder.jvm.JvmThreadMetrics;
@@ -8,13 +10,11 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.context.annotation.Bean;
-import org.springframework.context.annotation.ComponentScan;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.context.annotation.Import;
 import org.springframework.data.jpa.repository.config.EnableJpaRepositories;
 
 import com.docker.atsea.configuration.JpaConfiguration;
-import com.docker.atsea.controller.LoginController;
 import com.docker.atsea.security.JwtFilter;
 import springfox.documentation.builders.PathSelectors;
 import springfox.documentation.builders.RequestHandlerSelectors;
@@ -24,7 +24,7 @@ import springfox.documentation.swagger1.annotations.EnableSwagger;
 import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 
-@Import({JpaConfiguration.class,LogViewerSpringBootConfig.class, LogViewerWebsocketConfig.class})
+@Import({JpaConfiguration.class,LogViewerSpringBootConfig.class, LogViewerWebsocketConfig.class, StudentsWebServiceConfig.class, OrderServiceConfig.class})
 @SpringBootApplication(scanBasePackages={"com.docker.atsea"})
 @EntityScan("com.docker.atsea.model")
 @EnableJpaRepositories("com.docker.atsea.repository")
