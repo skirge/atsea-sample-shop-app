@@ -34,7 +34,6 @@ public class StudentMap {
         public void setStudent(Student student) {
             this.student = student;
         }
-        // getters and setters
 
     }
 }

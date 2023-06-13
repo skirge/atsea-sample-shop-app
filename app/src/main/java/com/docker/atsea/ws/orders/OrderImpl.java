@@ -1,15 +1,19 @@
 package com.docker.atsea.ws.orders;
 
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+import org.springframework.web.context.support.SpringBeanAutowiringSupport;
+
+import javax.jws.WebService;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 import java.util.logging.Logger;
 
-@javax.jws.WebService(serviceName = "OrderService", portName = "OrderPort",
-        targetNamespace = "http://service.ws.sample.order/",
-        endpointInterface = "com.docker.atsea.ws.orders.Order")
-public class OrderImpl implements Order {
+@WebService(endpointInterface = "com.docker.atsea.ws.orders.Order")
+@Component
+public class OrderImpl extends SpringBeanAutowiringSupport implements Order {
 
     private static final Logger LOG = Logger.getLogger(OrderImpl.class.getName());
 
