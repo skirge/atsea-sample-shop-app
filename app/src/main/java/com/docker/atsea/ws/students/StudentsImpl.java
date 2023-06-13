@@ -1,11 +1,14 @@
 package com.docker.atsea.ws.students;
 
 
+import org.springframework.stereotype.Component;
+
 import javax.jws.WebService;
 import java.util.LinkedHashMap;
 import java.util.Map;
 
 @WebService(endpointInterface = "com.docker.atsea.ws.students.Students")
+@Component
 public class StudentsImpl implements Students {
     private Map<Integer, Student> students
             = new LinkedHashMap<Integer, Student>();
