@@ -3,6 +3,7 @@ package com.docker.atsea;
 import com.docker.atsea.ws.CxfConfig;
 import com.logviewer.springboot.LogViewerSpringBootConfig;
 import com.logviewer.springboot.LogViewerWebsocketConfig;
+import io.micrometer.core.instrument.binder.jvm.JvmThreadMetrics;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.domain.EntityScan;
@@ -50,6 +51,12 @@ public class AtSeaApp {
                 .paths(PathSelectors.any())
                 .build();
     }
+
+    @Bean
+    JvmThreadMetrics threadMetrics(){
+        return new JvmThreadMetrics();
+    }
+
 
 	public static void main(String[] args) {
 		SpringApplication.run(AtSeaApp.class, args);
