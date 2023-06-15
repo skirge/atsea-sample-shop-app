@@ -18,8 +18,12 @@ public class StudentsImpl implements Students {
     }
 
     public String helloStudent(Student student) {
-        students.put(students.size() + 1, student);
-        return "Hello " + student.getName();
+        if(student!=null) {
+            students.put(students.size() + 1, student);
+            return "Hello " + student.getName();
+        } else {
+            throw new IllegalArgumentException("Student is required!");
+        }
     }
 
     public Map<Integer, Student> getStudents() {
