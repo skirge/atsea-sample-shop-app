@@ -19,11 +19,14 @@ public class OrderImpl extends SpringBeanAutowiringSupport implements Order {
 
     private static final java.util.Map<Integer, com.docker.atsea.model.Order> orders = new HashMap<Integer, com.docker.atsea.model.Order>();
 
+    private int orderId = 1;
+
     @Override
     public int createOrder(com.docker.atsea.model.Order order) {
         LOG.info("Executing operation createOrder:[" + order.toString() + "]");
-        orders.put(orders.size()+1, order);
-        return orders.size();
+        orderId += 1;
+        orders.put(orderId, order);
+        return orderId;
     }
 
     @Override

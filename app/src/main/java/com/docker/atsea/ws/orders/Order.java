@@ -6,6 +6,7 @@ import javax.jws.WebMethod;
 import javax.jws.WebParam;
 import javax.jws.WebResult;
 import javax.jws.WebService;
+import javax.xml.bind.annotation.XmlElement;
 import javax.xml.ws.RequestWrapper;
 import javax.xml.ws.ResponseWrapper;
 import java.util.List;
@@ -20,10 +21,10 @@ import java.util.Map;
 public interface Order {
 
     @WebMethod
-    int createOrder(com.docker.atsea.model.Order order);
+    int createOrder(@XmlElement(required=true, nillable=false) com.docker.atsea.model.Order order);
 
     @WebMethod
-    int deleteOrder(Integer orderId);
+    int deleteOrder(@XmlElement(required=true, nillable=false) Integer orderId);
 
     @WebMethod
     Map<Integer, com.docker.atsea.model.Order> getOrders();
