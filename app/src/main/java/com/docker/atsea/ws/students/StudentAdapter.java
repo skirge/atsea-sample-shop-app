@@ -7,7 +7,10 @@ public class StudentAdapter extends XmlAdapter<StudentImpl, Student> {
         if (student instanceof StudentImpl) {
             return (StudentImpl) student;
         }
-        return new StudentImpl(student != null ? student.getName() : "");
+        if(student == null) {
+            return new StudentImpl("");
+        } else
+            return new StudentImpl(student.getName());
     }
 
     public Student unmarshal(StudentImpl student) throws Exception {
