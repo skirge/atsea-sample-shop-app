@@ -16,6 +16,7 @@ public class CustomerDTOImpl implements CustomerDTO {
     private String password;
     private Boolean enabled;
     private String role;
+    private String status;
 
     public CustomerDTOImpl() {
     }
@@ -146,5 +147,13 @@ public class CustomerDTOImpl implements CustomerDTO {
                 ", enabled=" + enabled +
                 ", role='" + role + '\'' +
                 '}';
+    }
+
+    public String getStatus() {
+        return status;
+    }
+
+    public void setStatus(String status) {
+        this.status = status;
     }
 }

@@ -21,12 +21,14 @@ public class CustomerImpl extends SpringBeanAutowiringSupport implements Custome
     @Override
     public CustomerDTO findCustomer(String name) {
         LOG.info("Searching for customer = [" + name + "]");
-        com.docker.atsea.model.Customer c = customerService.findByUserName(name);
-        LOG.info("Found customer = [" + c + "]");
-        if ( null == c ) {
-            return null;
+        Object c = customerService.findByUserName(name);
+        if (c == null) {
+            CustomerDTOImpl dto = new CustomerDTOImpl();
+            dto.setStatus("NOT_FOUND");
+            return dto;
         }
-        return new CustomerDTOImpl(c);
+        LOG.info("Found customer = [" + c + "]");
+        return new CustomerDTOImpl((com.docker.atsea.model.Customer) c);
     }
 
 }
