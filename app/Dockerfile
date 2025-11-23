@@ -4,14 +4,14 @@ COPY react-app .
 RUN npm install
 RUN npm run build
 
-FROM maven:latest AS appserver
+FROM maven:3-openjdk-18-slim AS appserver
 WORKDIR /usr/src/atsea
 COPY pom.xml .
 RUN mvn -B -f pom.xml -s /usr/share/maven/ref/settings-docker.xml dependency:resolve
 COPY . .
 RUN mvn -B -s /usr/share/maven/ref/settings-docker.xml package -DskipTests
 
-FROM openjdk:8-jdk-alpine
+FROM openjdk:8u92-jdk-alpine
 RUN adduser -Dh /home/gordon gordon
 WORKDIR /static
 COPY --from=storefront /usr/src/atsea/app/react-app/build/ .
