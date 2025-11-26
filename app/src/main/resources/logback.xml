@@ -9,6 +9,6 @@
 
     <root level="INFO">
         <appender-ref ref="console" />
-        <appender-ref ref="FILE" />
+        <!--appender-ref ref="FILE" /-->
     </root>
 </configuration>

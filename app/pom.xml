@@ -44,16 +44,20 @@
       <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-web</artifactId>
+	  <!-- Log4Shell
           <exclusions>
               <exclusion>
                   <groupId>org.springframework.boot</groupId>
                   <artifactId>spring-boot-starter-logging</artifactId>
               </exclusion>
+              
               <exclusion>
                   <groupId>ch.qos.logback</groupId>
                   <artifactId>logback-classic</artifactId>
               </exclusion>
+
           </exclusions>
+          -->
       </dependency>
       <dependency>
           <groupId>org.apache.cxf</groupId>
@@ -75,6 +79,7 @@
           <groupId>io.micrometer</groupId>
           <artifactId>micrometer-core</artifactId>
       </dependency>
+      <!-- Log4Shell 
       <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-log4j2</artifactId>
@@ -84,6 +89,7 @@
           <artifactId>log4j-core</artifactId>
           <version>2.10.0</version>
       </dependency>
+    -->
       <dependency>
           <groupId>org.springframework.boot</groupId>
           <artifactId>spring-boot-starter-websocket</artifactId>
@@ -102,10 +108,12 @@
           <artifactId>jolokia-spring</artifactId>
           <version>1.2.1</version>
       </dependency>
-      <!--dependency>
+      <!-- Comment for log4j -->
+      <dependency>
           <groupId>ch.qos.logback</groupId>
           <artifactId>logback-classic</artifactId>
-      </dependency-->
+      </dependency>
+      <!-- end comment for log4j -->
       <dependency>
           <groupId>org.jolokia</groupId>
           <artifactId>jolokia-jmx</artifactId>
@@ -152,10 +160,12 @@
       <groupId>org.springframework.boot</groupId>
       <artifactId>spring-boot-starter-thymeleaf</artifactId>
         <exclusions>
+            <!-- Log4Shell
             <exclusion>
                 <groupId>ch.qos.logback</groupId>
                 <artifactId>logback-classic</artifactId>
             </exclusion>
+            -->
         </exclusions>
     </dependency>
     <!-- Add JPA support -->
@@ -205,10 +215,12 @@
 		<artifactId>hibernate-c3p0</artifactId>
 		<!--version>5.2.10.Final</version-->
 	</dependency>
-	<!--dependency>
+	<!-- comment for Log4Shell
+	<dependency>
 		<groupId>ch.qos.logback</groupId>
 		<artifactId>logback-classic</artifactId>
-	</dependency-->
+	</dependency>
+	-->
 	<dependency>
 		<groupId>org.jolokia</groupId>
 		<artifactId>jolokia-jmx</artifactId>
@@ -255,10 +267,12 @@
 		  <groupId>org.springframework.boot</groupId>
 		  <artifactId>spring-boot-starter-thymeleaf</artifactId>
 		  <exclusions>
+              <!-- Log4shell
 			  <exclusion>
 				  <groupId>ch.qos.logback</groupId>
 				  <artifactId>logback-classic</artifactId>
 			  </exclusion>
+              -->
 		  </exclusions>
 	  </dependency>
 	  <!-- Add JPA support -->
