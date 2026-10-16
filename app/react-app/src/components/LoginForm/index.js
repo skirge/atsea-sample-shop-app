@@ -5,6 +5,9 @@ import Input from '../Input';
 import './styles.css';
 import validate from './validate.js'
 
+const renderUsername = field => <Input field={field} hintText={"Username"} />;
+const renderPassword = field => <Input type={"password"} field={field} hintText={"Password"} />;
+
 class LoginForm extends Component {
 
   renderLogin() {
@@ -14,15 +17,11 @@ class LoginForm extends Component {
           <div className='loginFormRow'>
           <Field 
             name="username"
-            component={username=>
-              <Input field={username} hintText={"Username"} /> 
-            }
+            component={renderUsername}
          />
           <Field 
             name="password"
-            component={password=>
-              <Input type={"password"} field={password} hintText={"Password"} /> 
-            }
+            component={renderPassword}
          />
          </div>
       </div>
