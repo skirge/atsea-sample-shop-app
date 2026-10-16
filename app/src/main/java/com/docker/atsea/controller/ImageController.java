@@ -39,4 +39,9 @@ public class ImageController {
         byte[] imageBytes = IOUtils.toByteArray(new URL(url));
         return new ResponseEntity<byte[]>(imageBytes,HttpStatus.OK);
     }
+
+    // TODO: add getImageAsync for DNS rebinding
+
+    // TODO: add getImageFromExternal for HTTP client - demonstrate validation but redirect vulnerability
+
 }
