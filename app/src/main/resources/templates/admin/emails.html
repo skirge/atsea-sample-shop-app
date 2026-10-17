@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Sent emails | @Sea admin</title>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; color: #243746; }
+    article { border: 1px solid #ccd6dd; padding: 1rem; margin-bottom: 1rem; overflow-wrap: anywhere; }
+  </style>
+</head>
+<body>
+  <h1>Sent emails</h1>
+  <p><a href="/admin/purchases">Purchases</a> | <a href="/">Back to store</a></p>
+  <p>Dojo outbox: emails are displayed here instead of being delivered by SMTP. Refresh to see new emails. This outbox clears when the application restarts.</p>
+  <p th:if="${#lists.isEmpty(emails)}">No emails sent yet.</p>
+  <article th:each="email : ${emails}">
+    <h2 th:text="${email.subject}"></h2>
+    <p>To: <span th:text="${email.recipient}"></span></p>
+    <p>Sent: <span th:text="${email.sentAt}"></span></p>
+    <p>We received a request to reset your @Sea password. Follow this link to choose a new password:</p>
+    <p><a th:href="${email.resetLink}" th:text="${email.resetLink}"></a></p>
+    <p>If you did not request this email, you can ignore it.</p>
+  </article>
+</body>
+</html>

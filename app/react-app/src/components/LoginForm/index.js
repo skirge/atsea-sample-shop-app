@@ -66,6 +66,7 @@ class LoginForm extends Component {
           {this.renderLogin()}
           {err}
           {this.renderButtons()}
+          <p><a href="/forgot-password">Forgot password?</a></p>
         </form>
       </div>
     );

@@ -12,7 +12,7 @@
 </head>
 <body>
   <h1>Purchases</h1>
-  <p><a href="/">Back to store</a></p>
+  <p><a href="/admin/emails">Sent emails</a> | <a href="/">Back to store</a></p>
   <p th:if="${#lists.isEmpty(purchases)}">No purchases yet.</p>
   <table th:unless="${#lists.isEmpty(purchases)}">
     <thead>
