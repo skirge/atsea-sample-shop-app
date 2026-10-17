@@ -72,6 +72,13 @@ HTTPS is server on `https://atseashop.com`, using self signed certificate.
 
 Documentation for REST calls: [REST API](./REST.md)
 
+The [blind XSS exercise](./BLIND_XSS.md) stores checkout details and renders them
+in an admin-only purchase list at `/admin/purchases`.
+Startup creates the admin login `admin` / `admin123!` if it is absent. Customers
+register themselves through **Create User**.
+Signed-in customers can choose **My Purchases** (`/#/purchases`) to view their own
+purchases in an intentionally unsafe page for the self-XSS exercise.
+
 
 ## A simplified development environment
 This compose file creates a simplified development environment consisting of only the application server and the database.

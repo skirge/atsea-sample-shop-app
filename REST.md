@@ -462,14 +462,22 @@ HTTP 403 UNAUTHORIZED
 #### Purchase
 **Request:**
 ```
-GET: /atsea/purchase/
+POST: /purchase/
 
 Host: localhost:8080
-Auth: 
+Authorization: Bearer <customer JWT from /login/>
 Content-type: application/json
 Accept: application/json
 
-
+{
+    "firstName": "Arthur",
+    "lastName": "Dent",
+    "company": "Dojo",
+    "title": "Customer",
+    "address": "42 Training Street",
+    "city": "Test City",
+    "productsOrdered": {"1": 2}
+}
 ```
 **Returns:**
 ```
@@ -480,6 +488,35 @@ HTTP 200 OK
 }
 ```
 **Error:**
+
+An empty cart or non-positive product ID/quantity returns HTTP 400. A deleted or
+disabled customer returns HTTP 401. The existing JWT filter requires a valid
+Bearer token. GET lists purchases and does not complete a purchase.
+
+Customer identity and purchase timestamps are assigned by the server. Card
+numbers, CVVs, and expiration dates are not saved.
+
+#### Customer purchase list (self-XSS exercise)
+
+`GET /purchase/` with the customer's Bearer token returns their own purchases as
+JSON, newest first. The server derives the customer ID from the authenticated
+JWT subject; a `customerId` query parameter does not change whose purchases are
+returned. An account without purchases receives `[]`.
+
+The storefront's **My Purchases** link opens `/#/purchases`. That page uses the
+existing login token and intentionally inserts saved name and billing fields as
+raw HTML using React's `dangerouslySetInnerHTML`, allowing stored self-XSS.
+
+#### Admin purchase list (blind XSS exercise)
+
+`GET /admin/purchases` returns an HTML list, newest purchase first. Use HTTP Basic
+authentication with an enabled customer's credentials and the exact database
+role `ADMIN`. Anonymous requests return HTTP 401; authenticated users without
+that authority return HTTP 403. The customer JWT's `admin`/`aud` claims do not
+grant access to this page.
+
+The page intentionally renders stored name and billing fields as raw HTML.
+See [the blind XSS exercise](BLIND_XSS.md) for reproduction steps.
 
 ### System Utilities
 

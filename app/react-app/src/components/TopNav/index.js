@@ -22,6 +22,7 @@ import {
   setJwtToken,
 } from '../../actions/storage';
 import { SubmissionError } from 'redux-form'
+import { Link } from 'react-router';
 
 const customStyles = {
   overlay: {
@@ -218,6 +219,12 @@ class TopNav extends Component {
         <span className="welcomeMessage">
           {welcome}
         </span>
+        <FlatButton
+          style={styles}
+          labelStyle={labelStyles}
+          containerElement={<Link to="/purchases" />}
+          label="My Purchases"
+        />
         <FlatButton
           style={styles}
           labelStyle={labelStyles}

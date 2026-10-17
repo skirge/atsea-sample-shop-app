@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+  <meta charset="UTF-8" />
+  <title>Purchase list | @Sea admin</title>
+  <style>
+    body { font-family: sans-serif; margin: 2rem; color: #243746; }
+    table { border-collapse: collapse; width: 100%; }
+    th, td { border: 1px solid #ccd6dd; padding: .75rem; text-align: left; vertical-align: top; }
+    th { background: #edf5fa; }
+  </style>
+</head>
+<body>
+  <h1>Purchases</h1>
+  <p><a href="/">Back to store</a></p>
+  <p th:if="${#lists.isEmpty(purchases)}">No purchases yet.</p>
+  <table th:unless="${#lists.isEmpty(purchases)}">
+    <thead>
+      <tr><th>Purchase</th><th>Date</th><th>Customer ID</th><th>Name</th><th>Company / title</th><th>Billing address</th><th>Products (ID: quantity)</th></tr>
+    </thead>
+    <tbody>
+      <tr th:each="purchase : ${purchases}">
+        <td th:text="${purchase.purchaseId}"></td>
+        <td th:text="${purchase.purchasedAt}"></td>
+        <td th:text="${purchase.customerId}"></td>
+        <!-- Intentional dojo blind XSS: stored customer fields render as unescaped HTML. -->
+        <td><span th:utext="${purchase.firstName}"></span> <span th:utext="${purchase.lastName}"></span></td>
+        <td><div th:utext="${purchase.company}"></div><div th:utext="${purchase.title}"></div></td>
+        <td><div th:utext="${purchase.address}"></div><div th:utext="${purchase.city}"></div></td>
+        <td th:text="${purchase.productsOrdered}"></td>
+      </tr>
+    </tbody>
+  </table>
+</body>
+</html>

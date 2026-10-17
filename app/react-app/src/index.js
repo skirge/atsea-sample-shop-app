@@ -15,6 +15,7 @@ import App from './containers/App'
 import getMuiTheme from 'material-ui/styles/getMuiTheme'
 import MuiThemeProvider from 'material-ui/styles/MuiThemeProvider'
 import CheckoutContainer from './containers/CheckoutContainer'
+import PurchasesContainer from './containers/PurchasesContainer'
 
 
 const middleware = [
@@ -48,6 +49,7 @@ render(
       <Router history={hashHistory}>
         <Route path="/" component={App} />
         <Route path="checkout" component={CheckoutContainer} />
+        <Route path="purchases" component={PurchasesContainer} />
       </Router>
     </MuiThemeProvider>
   </Provider>,

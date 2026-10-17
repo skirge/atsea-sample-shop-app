@@ -1,12 +1,10 @@
 import React, { Component, PropTypes } from 'react'
 import { connect } from 'react-redux'
-import moment from 'moment'
 import {
   checkout,
-  createOrder,
   purchaseOrder,
 } from '../actions'
-import { getTotal, getCartProducts, getTotalProducts, getCustomerId, getQuantityById } from '../reducers'
+import { getTotal, getCartProducts, getTotalProducts, getQuantityById } from '../reducers'
 import SuccessMessage from '../components/SuccessMessage'
 import Checkout from '../components/Checkout'
 import { Link } from 'react-router'
@@ -25,41 +23,39 @@ class CheckoutContainer extends Component {
     this.setState({ orderComplete: true })
   }
 
-  // eslint-disable-next-line
   handleSubmit = (values) => {
     const {
-        customerId,
       purchaseOrder,
       totalProducts,
       quantityById
-      } = this.props
+    } = this.props
 
-    // This data will be used for create order endpoint
-    const date = moment().format()
-    // eslint-disable-next-line
     const {
-        firstName,
+      firstName,
       lastName,
-      } = values
-    // eslint-disable-next-line
+      company,
+      title,
+      address,
+      city,
+    } = values
     const submitData = {
-      customerId,
-      name: firstName,
-      orderDate: date,
+      firstName,
       lastName,
-      quantityById
+      company,
+      title,
+      address,
+      city,
+      productsOrdered: quantityById
     }
 
     if (totalProducts === 0) {
       throw new SubmissionError({ _error: "Please add to cart first..." })
     }
 
-    // TODO: Create Order
-    return purchaseOrder()
+    return purchaseOrder(submitData)
       .then(this.handleSuccess)
-      // error: status 404
-      .catch((err) => {
-        throw new SubmissionError({ _error: "Please login before completing order..." })
+      .catch(() => {
+        throw new SubmissionError({ _error: "Unable to save your purchase. Please sign in and try again." })
       })
   }
 
@@ -115,11 +111,10 @@ const mapStateToProps = (state) => ({
   products: getCartProducts(state),
   total: getTotal(state),
   totalProducts: getTotalProducts(state),
-  customerId: getCustomerId(state),
   quantityById: getQuantityById(state),
 })
 
 export default connect(
   mapStateToProps,
-  { checkout, createOrder, purchaseOrder }
+  { checkout, purchaseOrder }
 )(CheckoutContainer)

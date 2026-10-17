@@ -8,6 +8,8 @@ import org.springframework.security.config.annotation.authentication.builders.Au
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
 import org.springframework.security.config.annotation.web.configuration.EnableWebSecurity;
 import org.springframework.security.config.annotation.web.configuration.WebSecurityConfigurerAdapter;
+import org.springframework.security.crypto.password.NoOpPasswordEncoder;
+import org.springframework.security.web.util.matcher.AntPathRequestMatcher;
 
 
 
@@ -15,7 +17,7 @@ import org.springframework.security.config.annotation.web.configuration.WebSecur
 @EnableWebSecurity
 public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 		
-	// -----Basic Authentication implemented but not used -------
+	// Admin pages use HTTP Basic authentication against the existing customer table.
 	
     @Autowired
     DataSource dataSource;
@@ -23,6 +25,8 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
     @Autowired
     public void configAuthentication(AuthenticationManagerBuilder auth) throws Exception {
         auth.jdbcAuthentication().dataSource(dataSource)
+                // The dojo's existing customer passwords are stored as plain text.
+                .passwordEncoder(NoOpPasswordEncoder.getInstance())
                 .usersByUsernameQuery("SELECT username, password, enabled FROM customer WHERE username = ?")
                .authoritiesByUsernameQuery("SELECT username, role FROM customer WHERE username=?");
     }
@@ -32,10 +36,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
 	protected void configure(HttpSecurity http) throws Exception {
 		
 		http.authorizeRequests()
-//		      .antMatchers(HttpMethod.POST, "/login/**").authenticated()
-//		      .antMatchers(HttpMethod.DELETE, "/admin/**").authenticated()
-//		      .antMatchers(HttpMethod.GET, "/order/**").authenticated()
-//		      .antMatchers(HttpMethod.GET, "/customer/**").authenticated()
+			.requestMatchers(new AntPathRequestMatcher("/admin/**", null, false)).hasAuthority("ADMIN")
 			.anyRequest().permitAll()
 			.and().httpBasic()
 			.and().csrf().disable();

@@ -1,0 +1,26 @@
+.customerPurchases {
+  margin: 2rem;
+  color: #243746;
+  font-family: "Open Sans", sans-serif;
+}
+
+.customerPurchaseTable {
+  overflow-x: auto;
+}
+
+.customerPurchases table {
+  width: 100%;
+  border-collapse: collapse;
+}
+
+.customerPurchases th,
+.customerPurchases td {
+  padding: .75rem;
+  border: 1px solid #ccd6dd;
+  text-align: left;
+  vertical-align: top;
+}
+
+.customerPurchases th {
+  background: #edf5fa;
+}

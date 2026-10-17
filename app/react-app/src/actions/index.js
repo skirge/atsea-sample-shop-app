@@ -38,16 +38,17 @@ export const createOrder = (values) => (dispatch) => {
   return dispatch(dispatchObj)
 };
 
-export const purchaseOrder = () => (dispatch) => {
+export const purchaseOrder = (values) => (dispatch) => {
   const token = getJwtToken()
   let dispatchObj = {
     type: types.PURCHASE,
     payload: {
       promise:
       request
-        .get('/purchase/')
+        .post('/purchase/')
         .set('Authorization', 'Bearer ' + token)
         .accept('application/json')
+        .send(values)
         .end()
         .then((res) => res.body)
     },
