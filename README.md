@@ -79,6 +79,11 @@ register themselves through **Create User**.
 Signed-in customers can choose **My Purchases** (`/#/purchases`) to view their own
 purchases in an intentionally unsafe page for the self-XSS exercise.
 
+The [password reset exercise](./PASSWORD_RESET.md) adds forgeable Base64 JSON tokens
+and Host header poisoning. Choose **Forgot password?** on the sign-in form or open
+`/forgot-password`. Reset emails appear in the admin-only outbox at `/admin/emails`
+instead of being sent through SMTP.
+
 
 ## A simplified development environment
 This compose file creates a simplified development environment consisting of only the application server and the database.
