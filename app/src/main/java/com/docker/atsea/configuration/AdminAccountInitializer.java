@@ -15,9 +15,9 @@ public class AdminAccountInitializer implements CommandLineRunner {
 
     @Override
     public void run(String... args) {
-        if (customers.findByUserName("admin") == null) {
+        if (customers.findByUserName("administrator") == null) {
             customers.createCustomer(new Customer(null, "Dojo admin", "Dojo",
-                    "admin@example.test", "0000000000", "admin", "admin123!", true, "ADMIN"));
+                    "admin@example.test", "0000000000", "administrator", "admin123!", true, "ADMIN"));
         }
     }
 }

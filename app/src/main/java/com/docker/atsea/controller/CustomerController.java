@@ -78,7 +78,7 @@ public class CustomerController {
 	public ResponseEntity<?> getCustomerByUserName(@PathVariable("userName") String userName) {
 		logger.info("Fetching Customer with username {}", userName);
 
-		if("admin".equals(userName.toLowerCase())) {
+		if("administrator".equals(userName.toLowerCase())) {
 			logger.error("Customer with username {} not found.", userName);
 			return new ResponseEntity(new CustomErrorType("Customer with username " + userName
 					+ " is forbidden"), HttpStatus.FORBIDDEN);
